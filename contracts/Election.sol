@@ -1,4 +1,4 @@
-pragma solidity ^0.4.11;
+pragma solidity ^0.5.0;
 
 contract Election {
     // Model a Candidate
@@ -21,12 +21,12 @@ contract Election {
         uint indexed _candidateId
     );
 
-    function Election () public {
+    function election () public {
         addCandidate("Candidate A");
         addCandidate("Candidate B");
     }
 
-    function addCandidate (string _name) private {
+    function addCandidate (string memory _name) private {
         candidatesCount ++;
         candidates[candidatesCount] = Candidate(candidatesCount, _name, 0);
     }
@@ -45,6 +45,6 @@ contract Election {
         candidates[_candidateId].voteCount ++;
 
         // trigger voted event
-        votedEvent(_candidateId);
+        emit votedEvent(_candidateId);
     }
 }
